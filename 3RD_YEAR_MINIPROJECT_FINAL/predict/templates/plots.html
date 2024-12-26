@@ -1,0 +1,68 @@
+def coconut(request):
+        predicted_modal_price = None
+        if request.method == 'POST':
+            try:
+                market_name = request.POST['market_name']
+                year = int(request.POST['year'])
+                month = int(request.POST['month'])
+                day = int(request.POST['day'])
+                min_price = float(request.POST['min_price'])
+                max_price = float(request.POST['max_price'])
+                if min_price!=0 and max_price!=0 :
+                    example_input = pd.DataFrame({
+                    'Market Name': [market_name],
+                    'Year': [year],
+                    'Month': [month],
+                    'Day': [day],
+                    'Min Price (Rs./Quintal)': [ min_price],
+                    'Max Price (Rs./Quintal)': [ max_price],
+                })
+                else:    
+                    if market_name == "Udupi":
+                        url = "https://www.commodityonline.com/mandiprices/coconut/karnataka/udupi"
+                    elif market_name == "Kundapura":
+                        url = "https://www.commodityonline.com/mandiprices/coconut/karnataka/kundapura"
+                    elif market_name == "Puttur":
+                        url = "https://www.commodityonline.com/mandiprices/coconut/karnataka/puttur"
+                    elif market_name == "Mangalore":
+                        url = "https://www.commodityonline.com/mandiprices/coconut/karnataka/mangalore"
+                    elif market_name == "Belthangdi":
+                        url = "https://www.commodityonline.com/mandiprices/coconut/karnataka/udupi"
+                    elif market_name == "Karkala":
+                        url = "https://www.commodityonline.com/mandiprices/coconut/karnataka/mangalore"
+                    elif market_name == "Sulya":
+                        url = "https://www.commodityonline.com/mandiprices/coconut/karnataka/sulya"
+                    elif market_name == "Bantwala":
+                        url = "https://www.commodityonline.com/mandiprices/coconut/karnataka/Bantwala"
+                    else:
+                        raise ValueError("Unsupported district name")
+                    # Create input dataframe
+                    example_input = pd.DataFrame({
+                        'Market Name': [market_name],
+                        'Year': [year],
+                        'Month': [month],
+                        'Day': [day],
+                        'Min Price (Rs./Quintal)': [ get_prices_from_website(url,1)],
+                        'Max Price (Rs./Quintal)': [ get_prices_from_website(url,2)],
+                    })
+
+                # Ensure the input data types are correct
+                numerical_features = ['Year', 'Month', 'Day', 'Min Price (Rs./Quintal)', 'Max Price (Rs./Quintal)']
+                categorical_features = ['Market Name']
+
+                for col in numerical_features:
+                    example_input[col] = example_input[col].astype(float)
+
+                for col in categorical_features:
+                    example_input[col] = example_input[col].astype(str)
+
+                # Transform the new input using the preprocessor
+                example_input_transformed = preprocessor2.transform(example_input)
+
+                # Predict the modal price using the trained model
+                predicted_modal_price = model2.predict(example_input_transformed)[0][0]
+                
+            except Exception as e:
+                return JsonResponse({'error': str(e)}, status=400)
+
+        return render(request, 'coconut.html', {'predicted_modal_price': predicted_modal_price})

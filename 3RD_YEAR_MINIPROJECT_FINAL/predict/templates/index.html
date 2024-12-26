@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Price Prediction</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://i1.wp.com/agnetwest.com/wp-content/uploads/2016/08/agricultural-economic-growth.jpg?fit=1000%2C800&ssl=1 ');
+            margin: 0;
+            background-repeat:no-repeat;
+            background-position:center;
+            background-size:cover;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: linear-gradient(to right, #a8e06381, #56ab2f89);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        input[type=text],
+        input[type=number] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type=text]:focus,
+        input[type=number]:focus {
+            border-color: #3f51b5;
+            outline: none;
+        }
+
+        button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #303f9f;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="post">
+        <h1>Predict Modal Price</h1>
+        {% csrf_token %}
+        <label for="market_name">Market Name:</label>
+        <input type="text" id="market_name" name="market_name" required>
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required>
+
+        <label for="month">Month:</label>
+        <input type="number" id="month" name="month" required>
+
+        <label for="day">Day:</label>
+        <input type="number" id="day" name="day" required>
+
+        <label for="min_price">Min Price (Rs./Quintal):</label>
+        <input type="number" id="min_price" name="min_price" step="0.01" required>
+
+        <label for="max_price">Max Price (Rs./Quintal):</label>
+        <input type="number" id="max_price" name="max_price" step="0.01" required>
+
+        <button type="submit">Predict</button>
+
+        {% if predicted_modal_price %}
+        <h2>Predicted Modal Price: {{ predicted_modal_price }}</h2>
+        {% endif %}
+    </form>
+</body>
+
+</html>

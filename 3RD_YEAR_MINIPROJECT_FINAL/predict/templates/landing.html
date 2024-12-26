@@ -1,0 +1,296 @@
+<!-- templates/your_app/your_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== FAVICON ===============-->
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+
+    <!--=============== REMIX ICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>Landing Page</title>
+</head>
+
+<body>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <i class="ri-leaf-line nav__logo-icon"></i> Crop Price Prediction
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="{% url 'signup'%}">Sign Up</a>
+                       
+                    </li>
+                    <li class="nav__item">
+                        <a href="{% url 'login'%}">Login</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">Contact Us</a>
+                    </li>
+                </ul>
+
+                <div class="nav__close" id="nav-close">
+                    <i class="ri-close-line"></i>
+                </div>
+            </div>
+
+            <div class="nav__btns">
+                <!-- Theme change button -->
+                <i class="ri-moon-line change-theme" id="theme-button"></i>
+
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="ri-menu-line"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <!--==================== HOME ====================-->
+        <section class="home" id="home">
+            <div class="home__container container grid">
+                <img src="{% static 'img/home.png' %}" alt="" class="home__img">
+
+                <div class="home__data">
+                    <h1 class="home__title">
+                        Know Crop Prices before you plant
+                    </h1>
+                    <p class="home__description">
+                        Our Crop Price Prediction System uses advanced machine learning to accurately forecast crop
+                        prices, providing farmers
+                        and traders with valuable insights to optimize market strategies and increase profitability
+                    </p>
+                    <a href="#about" class="button button--flex">
+                        Explore <i class="ri-arrow-right-down-line button__icon"></i>
+                    </a>
+                </div>
+
+                <div class="home__social">
+                    <span class="home__social-follow">Follow Us</span>
+
+                    <div class="home__social-links">
+                        <a href="https://www.facebook.com/" target="_blank" class="home__social-link">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="home__social-link">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="home__social-link">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== ABOUT ====================-->
+        <section class="about section container" id="about">
+            <div class="about__container grid">
+                <img src="{% static 'img/about.png' %}" alt="" class="about__img">
+
+                <div class="about__data">
+                    <h2 class="section__title about__title">
+                        Who we really are & <br> why choose us
+                    </h2>
+
+                    <p class="about__description">
+                        We leverage cutting-edge AI to analyze vast amounts of data, giving you insights you can't find
+                        anywhere else to predict
+                        future crop prices.
+                    </p>
+
+                    <div class="about__details">
+                        <p class="about__details-description">
+                            <i class="ri-checkbox-fill about__details-icon"></i>
+                            Uncover market trends.
+                        </p>
+                        <p class="about__details-description">
+                            <i class="ri-checkbox-fill about__details-icon"></i>
+                            Informed decisions, better profits.
+                        </p>
+                        <p class="about__details-description">
+                            <i class="ri-checkbox-fill about__details-icon"></i>
+                            Reduce risk, maximize gains.
+                        </p>
+                        <p class="about__details-description">
+                            <i class="ri-checkbox-fill about__details-icon"></i>
+                            Trusted by farmers everywhere.
+                        </p>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </section>
+
+        <!--==================== STEPS ====================-->
+        <section class="steps section container">
+            <div class="steps__bg">
+                <h2 class="section__title-center steps__title">
+                    Steps to start your <br> predict crop price
+                </h2>
+
+                <div class="steps__container grid">
+                    <div class="steps__card">
+                        <div class="steps__card-number">01</div>
+                        <h3 class="steps__card-title">Enter Market Name and Date</h3>
+                        <p class="steps__card-description">
+                            We have several varieties of crops you can choose from.
+                        </p>
+                    </div>
+
+                    <div class="steps__card">
+                        <div class="steps__card-number">02</div>
+                        <h3 class="steps__card-title">Enter Max & Min Price if needed. Enter 0 for minimum and maximum price if you want to predict the price</h3>
+                        <p class="steps__card-description">
+                            Once your price is set, we move to the next step which is the predicting.
+                        </p>
+                    </div>
+
+                    <div class="steps__card">
+                        <div class="steps__card-number">03</div>
+                        <h3 class="steps__card-title">Get crops predicted</h3>
+                        <p class="steps__card-description">
+                            Get your crops predicted effortlessly—receive precise insights straight to you.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== CONTACT ====================-->
+        <!--<section class="contact section container" id="contact">
+            <div class="contact__container grid">
+                <div class="contact__box">
+                    <h2 class="section__title">
+                        Reach out to us today <br> via any of the given <br> information
+                    </h2>
+
+                    <div class="contact__data">
+                        <div class="contact__information">
+                            <h3 class="contact__subtitle">Call us for instant support</h3>
+                            <span class="contact__description">
+                                <i class="ri-phone-line contact__icon"></i>
+                                +9746 888 777
+                            </span>
+                        </div>
+
+                        <div class="contact__information">
+                            <h3 class="contact__subtitle">Write us by mail</h3>
+                            <span class="contact__description">
+                                <i class="ri-mail-line contact__icon"></i>
+                                student@email.com
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="" class="contact__form">
+                    <div class="contact__inputs">
+                        <div class="contact__content">
+                            <input type="email" placeholder=" " class="contact__input">
+                            <label for="" class="contact__label">Email</label>
+                        </div>
+
+                        <div class="contact__content">
+                            <input type="text" placeholder=" " class="contact__input">
+                            <label for="" class="contact__label">Subject</label>
+                        </div>
+
+                        <div class="contact__content contact__area">
+                            <textarea name="message" placeholder=" " class="contact__input"></textarea>
+                            <label for="" class="contact__label">Message</label>
+                        </div>
+                    </div>
+
+                    <button class="button button--flex">
+                        Send Message <i class="ri-arrow-right-up-line button__icon"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>-->
+
+    <!--==================== FOOTER ====================-->
+    <footer class="footer section">
+        <div class="footer__container container grid">
+            <div class="footer__content">
+                <a href="#" class="footer__logo">
+                    <i class="ri-leaf-line footer__logo-icon"></i> Crop Price Prediction
+                </a>
+
+                
+
+                <div class="footer__subscribe">
+                    <input type="email" placeholder="Enter your email" class="footer__input">
+                    <button class="button button--flex footer__button">
+                        Subscribe <i class="ri-arrow-right-up-line button__icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Our Address</h3>
+                <ul class="footer__data">
+                    <li class="footer__information">1234 - SMVITM</li>
+                    <li class="footer__information">Udupi - 43210</li>
+                    <li class="footer__information">Karntaka</li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Contact Us</h3>
+                <ul class="footer__data">
+                    <li class="footer__information">+919731299413</li>
+
+                    <div class="footer__social">
+                        <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="footer__social-link">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                    </div>
+                </ul>
+            </div>
+
+
+        </div>
+
+        <p class="footer__copy">&#169; Crop Price Prediction. All right reserved</p>
+    </footer>
+
+    <!--=============== SCROLL UP ===============-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-line scrollup__icon"></i>
+    </a>
+
+    <!--=============== SCROLL REVEAL ===============-->
+    <script src="c:\Users\User\Downloads\responsive-plants-website-main\assets\scssc:\Users\User\Downloads\responsive-plants-website-main\assets\scss{% static 'js/scrollreveal.min.js' %}"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
